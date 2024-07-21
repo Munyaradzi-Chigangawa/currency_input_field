@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/pub/v/currency_input_field?style=for-the-badge">
 <img src="https://img.shields.io/github/last-commit/Munyaradzi-Chigangawa/currency_input_field">
-<img src="https://img.shields.io/twitter/url?label=mchigangawa&style=social&url=https%3A%2F%2Ftwitter.com%2Fmchigangawa">
+<img src="https://img.shields.io/twitter/url?label=Munyaradzi Chigangawa&style=social&url=https%3A%2F%2Ftwitter.com%2Fmchigangawa">
 
 [![License: MIT][license_badge]][license_link]
 ![Coverage](./badge.svg)
@@ -159,17 +159,15 @@ CurrencyInputField(
 
 ## Parameters
 
-[//]: # (currencies: A list of currency codes to be displayed in the dropdown menu.)
-
-[//]: # (onCurrencyChanged: A callback function that is triggered when the selected currency changes.)
-
-[//]: # (onAmountChanged: A callback function that is triggered when the amount input changes.)
-
-[//]: # (validateAmount: A validation function for the amount input.)
-
-[//]: # (currencyHintText: Hint text for the currency dropdown field.)
-
-[//]: # (monetaryHintText: Hint text for the amount input field.)
+| Parameter | Description | Default Value |
+| --- | --- | --- |
+| currencyHintText | The hint text for the currency dropdown | "Currency" |
+| monetaryHintText | The hint text for the amount input field | "Amount" |
+| currencies | The list of currency codes to be displayed in the dropdown | ['USD', 'EUR', 'JPY', 'GBP'] |
+| onCurrencyChanged | A callback function that is called when the currency is changed | null |
+| onAmountChanged | A callback function that is called when the amount is changed | null |
+| validateAmount | A function that validates the amount input field | null |
+| --- | --- | --- |
 
 ## License
 
