@@ -35,6 +35,19 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
 
   @override
   Widget build(BuildContext context) {
+
+    final InputDecoration currencyDecoration = InputDecoration(
+      hintText: widget.currencyHintText,
+      labelText: widget.currencyHintText,
+      border: const OutlineInputBorder(),
+    );
+
+    final InputDecoration amountDecoration = InputDecoration(
+      hintText: widget.monetaryHintText,
+      labelText: widget.monetaryHintText,
+      border: const OutlineInputBorder(),
+    );
+
     return Form(
       key: _formKey,
       child: Row(
@@ -43,10 +56,7 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
           Expanded(
             flex: 1,
             child: DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                hintText: widget.currencyHintText,
-                labelText: widget.currencyHintText,
-              ),
+              decoration: currencyDecoration,
               value: selectedCurrency,
               items: widget.currencies.map((currency) {
                 return DropdownMenuItem<String>(
@@ -67,10 +77,7 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
             flex: 2,
             child: TextFormField(
               controller: amountController,
-              decoration: InputDecoration(
-                hintText: widget.monetaryHintText,
-                labelText: widget.monetaryHintText,
-              ),
+              decoration: amountDecoration,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
