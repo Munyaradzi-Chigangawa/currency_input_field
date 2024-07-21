@@ -8,4 +8,4 @@
 
 ## 0.0.3
 
-Fixed issue flutter sdk
+* Fixed issue flutter sdk

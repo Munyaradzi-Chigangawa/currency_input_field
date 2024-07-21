@@ -26,7 +26,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  currency_input_field: ^0.0.2
+  currency_input_field: ^0.0.3
 ```
 
 ### or
