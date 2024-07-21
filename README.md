@@ -5,7 +5,6 @@
 <img src="https://img.shields.io/twitter/url?label=Munyaradzi Chigangawa&style=social&url=https%3A%2F%2Ftwitter.com%2Fmchigangawa">
 
 [![License: MIT][license_badge]][license_link]
-![Coverage](./badge.svg)
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
@@ -27,7 +26,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  currency_input_field: ^0.0.1
+  currency_input_field: ^0.0.2
 ```
 
 ### or
