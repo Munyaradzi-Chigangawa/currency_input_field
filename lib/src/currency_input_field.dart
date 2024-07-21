@@ -39,19 +39,19 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
     final InputDecoration currencyDecoration = InputDecoration(
       hintText: widget.currencyHintText,
       labelText: widget.currencyHintText,
-      border: const OutlineInputBorder(),
+      contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
     );
 
     final InputDecoration amountDecoration = InputDecoration(
       hintText: widget.monetaryHintText,
       labelText: widget.monetaryHintText,
-      border: const OutlineInputBorder(),
+      contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
     );
 
     return Form(
       key: _formKey,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             flex: 1,
