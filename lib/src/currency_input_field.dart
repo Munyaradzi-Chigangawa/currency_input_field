@@ -30,7 +30,7 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
   @override
   void initState() {
     super.initState();
-    //selectedCurrency = widget.currencies.first;
+    // selectedCurrency = widget.currencies.first;
   }
 
   @override
