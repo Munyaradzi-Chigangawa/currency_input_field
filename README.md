@@ -159,15 +159,14 @@ CurrencyInputField(
 
 ## Parameters
 
-| Parameter | Description | Default Value |
-| --- | --- | --- |
-| currencyHintText | The hint text for the currency dropdown | "Currency" |
-| monetaryHintText | The hint text for the amount input field | "Amount" |
-| currencies | The list of currency codes to be displayed in the dropdown | ['USD', 'EUR', 'JPY', 'GBP'] |
-| onCurrencyChanged | A callback function that is called when the currency is changed | null |
-| onAmountChanged | A callback function that is called when the amount is changed | null |
-| validateAmount | A function that validates the amount input field | null |
-| --- | --- | --- |
+| Parameter | Description |
+| --- | --- |
+| currencyHintText | The hint text for the currency dropdown |
+| monetaryHintText | The hint text for the amount input field |
+| currencies | The list of currency codes to be displayed in the dropdown |
+| onCurrencyChanged | A callback function that is called when the currency is changed |
+| onAmountChanged | A callback function that is called when the amount is changed |
+| validateAmount | A function that validates the amount input field |
 
 ## License
 
