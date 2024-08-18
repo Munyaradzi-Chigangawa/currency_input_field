@@ -131,7 +131,7 @@ Without Borders
 [![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240721_204210.png)](https://www.munyaradzichigangawa.co.zw)
 
 With Borders
-[![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240818_110429.png)](https://www.munyaradzichigangawa.co.zw)
+[![Currency Input Field_1](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240818_110429.png)](https://www.munyaradzichigangawa.co.zw)
 
 ## Customizations
 ```dart
