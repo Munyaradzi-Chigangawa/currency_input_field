@@ -17,11 +17,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Currency Amount Input Example'),
+          title: const Text('Currency Amount Input Example'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -30,7 +29,12 @@ class _MyAppState extends State<MyApp> {
               CurrencyInputField(
                 currencyHintText: "Currency",
                 monetaryHintText: "Amount",
-                currencies: ['ZMW', 'MWK', 'KES', 'ZAR', 'BWP', 'GBP', 'ZWL', 'USD'],
+                currencies: const [
+                  'ZAR',
+                  'GBP',
+                  'ZWL',
+                  'USD'
+                ],
                 onCurrencyChanged: (currency) {
                   setState(() {
                     selectedCurrency = currency;
@@ -53,6 +57,21 @@ class _MyAppState extends State<MyApp> {
                   }
                   return null;
                 },
+                // Applying customizations
+                currencyInputDecoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Currency',
+                  hintText: 'Currency',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                ),
+                amountInputDecoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Amount',
+                  hintText: 'Enter Amount',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                ),
               ),
               SizedBox(height: 20.0),
               Text(

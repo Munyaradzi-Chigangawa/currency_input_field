@@ -9,3 +9,8 @@
 ## 0.0.3
 
 * Fixed issue flutter sdk
+
+## 0.0.4
+
+* Added Decorations to the input fields
+

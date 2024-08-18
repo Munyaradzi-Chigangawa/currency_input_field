@@ -1,6 +1,6 @@
 name: currency_input_field
 description: "A Flutter package for a currency and amount input field. It allows the user to input an amount and select a currency in a drop down."
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/Munyaradzi-Chigangawa/currency_input_field
 repository: https://github.com/Munyaradzi-Chigangawa/currency_input_field
 
