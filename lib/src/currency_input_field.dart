@@ -9,6 +9,12 @@ class CurrencyInputField extends StatefulWidget {
   final String currencyHintText;
   final String monetaryHintText;
 
+  final InputDecoration? currencyInputDecoration;
+  final InputDecoration? amountInputDecoration;
+  final TextStyle? currencyTextStyle;
+  final TextStyle? amountTextStyle;
+  final EdgeInsets? spacingBetweenFields;
+
   CurrencyInputField({
     required this.currencies,
     required this.onCurrencyChanged,
@@ -16,6 +22,12 @@ class CurrencyInputField extends StatefulWidget {
     this.validateAmount,
     required this.currencyHintText,
     required this.monetaryHintText,
+
+    this.currencyInputDecoration,
+    this.amountInputDecoration,
+    this.currencyTextStyle,
+    this.amountTextStyle,
+    this.spacingBetweenFields,
   });
 
   @override
@@ -36,13 +48,14 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
   @override
   Widget build(BuildContext context) {
 
-    final InputDecoration currencyDecoration = InputDecoration(
+    final InputDecoration currencyDecoration = widget.currencyInputDecoration ??
+        InputDecoration(
       hintText: widget.currencyHintText,
       labelText: widget.currencyHintText,
       contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
     );
 
-    final InputDecoration amountDecoration = InputDecoration(
+    final InputDecoration amountDecoration = widget.amountInputDecoration ?? InputDecoration(
       hintText: widget.monetaryHintText,
       labelText: widget.monetaryHintText,
       contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
@@ -72,7 +85,7 @@ class _CurrencyInputFieldState extends State<CurrencyInputField> {
               },
             ),
           ),
-          SizedBox(width: 16.0),
+          SizedBox(width: widget.spacingBetweenFields?.horizontal ?? 16.0),
           Expanded(
             flex: 2,
             child: TextFormField(

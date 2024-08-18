@@ -26,7 +26,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  currency_input_field: ^0.0.3
+  currency_input_field: ^0.0.4
 ```
 
 ### or
@@ -127,8 +127,51 @@ class _CurrencyInputExampleState extends State<CurrencyInputExample> {
 ```
 
 ## Preview 
+Without Borders
 [![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240721_204210.png)](https://www.munyaradzichigangawa.co.zw)
 
+With Borders
+[![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240818_110429.png)](https://www.munyaradzichigangawa.co.zw)
+
+## Customizations
+```dart
+CurrencyInputField(
+  currencyHintText: "Select Currency",
+  monetaryHintText: "Enter Amount",
+  currencies: ['USD', 'EUR', 'JPY', 'GBP'],
+  onCurrencyChanged: (currency) {
+    // Handle currency change
+  },
+  onAmountChanged: (amount) {
+    // Handle amount change
+  },
+  
+// Applying customizations
+  currencyInputDecoration: InputDecoration(
+    border: OutlineInputBorder(),
+    labelText: 'Currency',
+    hintText: 'Currency',
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+  ),
+  amountInputDecoration: InputDecoration(
+    border: OutlineInputBorder(),
+    labelText: 'Amount',
+    hintText: 'Enter Amount',
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+  ),
+  currencyTextStyle: TextStyle(
+    fontSize: 16.0,
+    color: Colors.blueAccent,
+  ),
+  amountTextStyle: TextStyle(
+    fontSize: 16.0,
+    color: Colors.green,
+  ),
+
+  // Default is 16.0, However you can change it to any value
+  spacingBetweenFields: EdgeInsets.symmetric(horizontal: 20.0),
+),
+```
 
 ## Advanced Usage
 ```dart
