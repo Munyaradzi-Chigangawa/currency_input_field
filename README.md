@@ -135,28 +135,40 @@ With Borders
 
 ## Customizations
 ```dart
+CurrencyInputField(
+  currencyHintText: "Select Currency",
+  monetaryHintText: "Enter Amount",
+  currencies: ['USD', 'EUR', 'JPY', 'GBP'],
+  onCurrencyChanged: (currency) {
+    // Handle currency change
+  },
+  onAmountChanged: (amount) {
+    // Handle amount change
+  },
+  
 // Applying customizations
-currencyInputDecoration: InputDecoration(
-  border: OutlineInputBorder(),
-  labelText: 'Currency',
-  hintText: 'Currency',
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-),
-amountInputDecoration: InputDecoration(
-  border: OutlineInputBorder(),
-  labelText: 'Amount',
-  hintText: 'Enter Amount',
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-),
-currencyTextStyle: TextStyle(
-  fontSize: 16.0,
-  color: Colors.blueAccent,
-),
-amountTextStyle: TextStyle(
-  fontSize: 16.0,
-  color: Colors.green,
-),
-// Default is 16.0, However you can change it to any value
+  currencyInputDecoration: InputDecoration(
+    border: OutlineInputBorder(),
+    labelText: 'Currency',
+    hintText: 'Currency',
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+  ),
+  amountInputDecoration: InputDecoration(
+    border: OutlineInputBorder(),
+    labelText: 'Amount',
+    hintText: 'Enter Amount',
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+  ),
+  currencyTextStyle: TextStyle(
+    fontSize: 16.0,
+    color: Colors.blueAccent,
+  ),
+  amountTextStyle: TextStyle(
+    fontSize: 16.0,
+    color: Colors.green,
+  ),
+
+  // Default is 16.0, However you can change it to any value
   spacingBetweenFields: EdgeInsets.symmetric(horizontal: 20.0),
 ),
 ```
