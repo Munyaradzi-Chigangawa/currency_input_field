@@ -14,3 +14,7 @@
 
 * Added Decorations to the input fields
 
+## 0.0.5
+
+* Support for Flutter 3.27.0
+
