@@ -150,14 +150,12 @@ CurrencyInputField(
   currencyInputDecoration: InputDecoration(
     border: OutlineInputBorder(),
     labelText: 'Currency',
-    hintText: 'Currency',
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+    hintText: 'Currency'
   ),
   amountInputDecoration: InputDecoration(
     border: OutlineInputBorder(),
     labelText: 'Amount',
-    hintText: 'Enter Amount',
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+    hintText: 'Enter Amount'
   ),
   currencyTextStyle: TextStyle(
     fontSize: 16.0,
