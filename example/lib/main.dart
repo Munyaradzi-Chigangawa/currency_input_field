@@ -62,15 +62,11 @@ class _MyAppState extends State<MyApp> {
                   border: OutlineInputBorder(),
                   labelText: 'Currency',
                   hintText: 'Currency',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
                 ),
                 amountInputDecoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Amount',
                   hintText: 'Enter Amount',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
                 ),
               ),
               SizedBox(height: 20.0),

@@ -11,6 +11,12 @@
 
 
 A customizable Flutter widget for inputting currency and amount values. This widget is designed to provide an intuitive and user-friendly way to input currency types and their corresponding amounts with validation.
+## Preview
+
+| Without Borders | With Borders |
+|------------------|--------------|
+| [![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/without_borders.gif)](https://www.munyaradzichigangawa.co.zw) | [![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/with_borders.gif)](https://www.munyaradzichigangawa.co.zw) |
+
 
 ## Features
 
@@ -26,7 +32,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  currency_input_field: ^0.0.4
+  currency_input_field: ^0.0.5
 ```
 
 ### or
@@ -126,13 +132,6 @@ class _CurrencyInputExampleState extends State<CurrencyInputExample> {
 }
 ```
 
-## Preview 
-Without Borders
-[![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240721_204210.png)](https://www.munyaradzichigangawa.co.zw)
-
-With Borders
-[![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240818_110429.png)](https://www.munyaradzichigangawa.co.zw)
-
 ## Customizations
 ```dart
 CurrencyInputField(
@@ -150,14 +149,12 @@ CurrencyInputField(
   currencyInputDecoration: InputDecoration(
     border: OutlineInputBorder(),
     labelText: 'Currency',
-    hintText: 'Currency',
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+    hintText: 'Currency'
   ),
   amountInputDecoration: InputDecoration(
     border: OutlineInputBorder(),
     labelText: 'Amount',
-    hintText: 'Enter Amount',
-    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+    hintText: 'Enter Amount'
   ),
   currencyTextStyle: TextStyle(
     fontSize: 16.0,
