@@ -126,12 +126,11 @@ class _CurrencyInputExampleState extends State<CurrencyInputExample> {
 }
 ```
 
-## Preview 
-Without Borders
-[![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240721_204210.png)](https://www.munyaradzichigangawa.co.zw)
+## Preview
 
-With Borders
-[![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/Screenshot_20240818_110429.png)](https://www.munyaradzichigangawa.co.zw)
+| Without Borders | With Borders |
+|------------------|--------------|
+| [![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/without_borders.gif)](https://www.munyaradzichigangawa.co.zw) | [![Currency Input Field](https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/with_borders.gif)](https://www.munyaradzichigangawa.co.zw) |
 
 ## Customizations
 ```dart
