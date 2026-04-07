@@ -181,132 +181,131 @@ void main() {
     });
 
     testWidgets('uses stacked layout on narrow width in adaptive mode',
-            (tester) async {
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              buildStringField(
-                currencies: const ['USD', 'GBP'],
-                layoutMode: CurrencyInputLayoutMode.adaptive,
-                stackBreakpoint: 360,
-              ),
-              size: const Size(320, 700),
-            ),
-          );
+        (tester) async {
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          buildStringField(
+            currencies: const ['USD', 'GBP'],
+            layoutMode: CurrencyInputLayoutMode.adaptive,
+            stackBreakpoint: 360,
+          ),
+          size: const Size(320, 700),
+        ),
+      );
 
-          expect(
-            find.byKey(const Key('currency_input_stacked_layout')),
-            findsOneWidget,
-          );
-          expect(
-            find.byKey(const Key('currency_input_inline_layout')),
-            findsNothing,
-          );
-        });
+      expect(
+        find.byKey(const Key('currency_input_stacked_layout')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('currency_input_inline_layout')),
+        findsNothing,
+      );
+    });
 
     testWidgets('uses inline layout on wide width in adaptive mode',
-            (tester) async {
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              buildStringField(
-                currencies: const ['USD', 'GBP'],
-                layoutMode: CurrencyInputLayoutMode.adaptive,
-                stackBreakpoint: 360,
-              ),
-              size: const Size(500, 700),
-            ),
-          );
+        (tester) async {
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          buildStringField(
+            currencies: const ['USD', 'GBP'],
+            layoutMode: CurrencyInputLayoutMode.adaptive,
+            stackBreakpoint: 360,
+          ),
+          size: const Size(500, 700),
+        ),
+      );
 
-          expect(
-            find.byKey(const Key('currency_input_inline_layout')),
-            findsOneWidget,
-          );
-          expect(
-            find.byKey(const Key('currency_input_stacked_layout')),
-            findsNothing,
-          );
-        });
+      expect(
+        find.byKey(const Key('currency_input_inline_layout')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const Key('currency_input_stacked_layout')),
+        findsNothing,
+      );
+    });
 
     testWidgets('uses stacked layout when explicitly requested',
-            (tester) async {
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              buildStringField(
-                layoutMode: CurrencyInputLayoutMode.stacked,
-              ),
-            ),
-          );
+        (tester) async {
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          buildStringField(
+            layoutMode: CurrencyInputLayoutMode.stacked,
+          ),
+        ),
+      );
 
-          expect(
-            find.byKey(const Key('currency_input_stacked_layout')),
-            findsOneWidget,
-          );
-        });
+      expect(
+        find.byKey(const Key('currency_input_stacked_layout')),
+        findsOneWidget,
+      );
+    });
 
-    testWidgets('uses inline layout when explicitly requested',
-            (tester) async {
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              buildStringField(
-                layoutMode: CurrencyInputLayoutMode.inline,
-              ),
-            ),
-          );
+    testWidgets('uses inline layout when explicitly requested', (tester) async {
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          buildStringField(
+            layoutMode: CurrencyInputLayoutMode.inline,
+          ),
+        ),
+      );
 
-          expect(
-            find.byKey(const Key('currency_input_inline_layout')),
-            findsOneWidget,
-          );
-        });
+      expect(
+        find.byKey(const Key('currency_input_inline_layout')),
+        findsOneWidget,
+      );
+    });
 
     testWidgets('shows validation error when currency is missing',
-            (tester) async {
-          final formKey = GlobalKey<FormState>();
+        (tester) async {
+      final formKey = GlobalKey<FormState>();
 
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              Form(
-                key: formKey,
-                child: buildStringField(
-                  currencies: const ['USD', 'GBP'],
-                ),
-              ),
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          Form(
+            key: formKey,
+            child: buildStringField(
+              currencies: const ['USD', 'GBP'],
             ),
-          );
+          ),
+        ),
+      );
 
-          final valid = formKey.currentState?.validate() ?? false;
-          await tester.pump();
+      final valid = formKey.currentState?.validate() ?? false;
+      await tester.pump();
 
-          expect(valid, isFalse);
-          expect(find.text('Please select a currency'), findsOneWidget);
-        });
+      expect(valid, isFalse);
+      expect(find.text('Please select a currency'), findsOneWidget);
+    });
 
     testWidgets('shows validation error when amount is required but empty',
-            (tester) async {
-          final formKey = GlobalKey<FormState>();
-          final controller = CurrencyInputController<String>(
-            initialCurrency: 'USD',
-            initialAmount: '',
-          );
+        (tester) async {
+      final formKey = GlobalKey<FormState>();
+      final controller = CurrencyInputController<String>(
+        initialCurrency: 'USD',
+        initialAmount: '',
+      );
 
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              Form(
-                key: formKey,
-                child: buildStringField(
-                  controller: controller,
-                  requireCurrency: true,
-                  requireAmount: true,
-                ),
-              ),
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          Form(
+            key: formKey,
+            child: buildStringField(
+              controller: controller,
+              requireCurrency: true,
+              requireAmount: true,
             ),
-          );
+          ),
+        ),
+      );
 
-          final valid = formKey.currentState?.validate() ?? false;
-          await tester.pump();
+      final valid = formKey.currentState?.validate() ?? false;
+      await tester.pump();
 
-          expect(valid, isFalse);
-          expect(find.text('Please enter an amount'), findsOneWidget);
-        });
+      expect(valid, isFalse);
+      expect(find.text('Please enter an amount'), findsOneWidget);
+    });
 
     testWidgets('validates amount using custom validator', (tester) async {
       final formKey = GlobalKey<FormState>();
@@ -373,79 +372,78 @@ void main() {
     });
 
     testWidgets('validates combined value using top-level validator',
-            (tester) async {
-          final formKey = GlobalKey<FormState>();
-          final controller = CurrencyInputController<String>(
-            initialCurrency: 'USD',
-            initialAmount: '1000',
-          );
+        (tester) async {
+      final formKey = GlobalKey<FormState>();
+      final controller = CurrencyInputController<String>(
+        initialCurrency: 'USD',
+        initialAmount: '1000',
+      );
 
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              Form(
-                key: formKey,
-                child: buildStringField(
-                  controller: controller,
-                  validator: (value) {
-                    if (value.currency == 'USD' && (value.amount ?? 0) > 500) {
-                      return 'USD amount cannot exceed 500';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          Form(
+            key: formKey,
+            child: buildStringField(
+              controller: controller,
+              validator: (value) {
+                if (value.currency == 'USD' && (value.amount ?? 0) > 500) {
+                  return 'USD amount cannot exceed 500';
+                }
+                return null;
+              },
             ),
-          );
+          ),
+        ),
+      );
 
-          final valid = formKey.currentState?.validate() ?? false;
-          await tester.pump();
+      final valid = formKey.currentState?.validate() ?? false;
+      await tester.pump();
 
-          expect(valid, isFalse);
-          expect(find.text('USD amount cannot exceed 500'), findsOneWidget);
-        });
+      expect(valid, isFalse);
+      expect(find.text('USD amount cannot exceed 500'), findsOneWidget);
+    });
 
-    testWidgets('controller clear resets currency and amount',
-            (tester) async {
-          final controller = CurrencyInputController<String>(
-            initialCurrency: 'USD',
-            initialAmount: '25.50',
-          );
+    testWidgets('controller clear resets currency and amount', (tester) async {
+      final controller = CurrencyInputController<String>(
+        initialCurrency: 'USD',
+        initialAmount: '25.50',
+      );
 
-          controller.clear();
+      controller.clear();
 
-          expect(controller.currency, isNull);
-          expect(controller.amountText, '');
-          expect(controller.amount, isNull);
-        });
+      expect(controller.currency, isNull);
+      expect(controller.amountText, '');
+      expect(controller.amount, isNull);
+    });
 
     testWidgets('amount parses commas correctly if model supports it',
-            (tester) async {
-          final controller = CurrencyInputController<String>(
-            initialCurrency: 'USD',
-            initialAmount: '1,234.56',
-          );
+        (tester) async {
+      final controller = CurrencyInputController<String>(
+        initialCurrency: 'USD',
+        initialAmount: '1,234.56',
+      );
 
-          expect(controller.amount, 1234.56);
-        });
+      expect(controller.amount, 1234.56);
+    });
   });
 
   group('CurrencyInputField<CurrencyCode>', () {
     testWidgets('renders initial enum currency from controller',
-            (tester) async {
-          final controller = CurrencyInputController<CurrencyCode>(
-            initialCurrency: CurrencyCode.usd,
-            initialAmount: '25.50',
-          );
+        (tester) async {
+      final controller = CurrencyInputController<CurrencyCode>(
+        initialCurrency: CurrencyCode.usd,
+        initialAmount: '25.50',
+      );
 
-          await tester.pumpWidget(
-            wrapWithMaterial(buildEnumField(controller: controller)),
-          );
+      await tester.pumpWidget(
+        wrapWithMaterial(buildEnumField(controller: controller)),
+      );
 
-          expect(find.text('25.50'), findsOneWidget);
-          expect(controller.currency, CurrencyCode.usd);
-          expect(controller.amountText, '25.50');
-          expect(controller.amount, 25.50);
-        });
+      expect(find.text('25.50'), findsOneWidget);
+      expect(controller.currency, CurrencyCode.usd);
+      expect(controller.amountText, '25.50');
+      expect(controller.amount, 25.50);
+    });
 
     testWidgets('fires enum currency change callback', (tester) async {
       CurrencyCode? latestCurrency;
@@ -493,70 +491,69 @@ void main() {
       expect(latestValue!.amount, 45);
     });
 
-    testWidgets('validates enum amount using custom validator',
-            (tester) async {
-          final formKey = GlobalKey<FormState>();
-          final controller = CurrencyInputController<CurrencyCode>(
-            initialCurrency: CurrencyCode.usd,
-            initialAmount: '0',
-          );
+    testWidgets('validates enum amount using custom validator', (tester) async {
+      final formKey = GlobalKey<FormState>();
+      final controller = CurrencyInputController<CurrencyCode>(
+        initialCurrency: CurrencyCode.usd,
+        initialAmount: '0',
+      );
 
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              Form(
-                key: formKey,
-                child: buildEnumField(
-                  controller: controller,
-                  amountValidator: (value) {
-                    final amount = double.tryParse(value);
-                    if (amount == null || amount <= 0) {
-                      return 'Amount must be greater than 0';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          Form(
+            key: formKey,
+            child: buildEnumField(
+              controller: controller,
+              amountValidator: (value) {
+                final amount = double.tryParse(value);
+                if (amount == null || amount <= 0) {
+                  return 'Amount must be greater than 0';
+                }
+                return null;
+              },
             ),
-          );
+          ),
+        ),
+      );
 
-          final valid = formKey.currentState?.validate() ?? false;
-          await tester.pump();
+      final valid = formKey.currentState?.validate() ?? false;
+      await tester.pump();
 
-          expect(valid, isFalse);
-          expect(find.text('Amount must be greater than 0'), findsOneWidget);
-        });
+      expect(valid, isFalse);
+      expect(find.text('Amount must be greater than 0'), findsOneWidget);
+    });
 
     testWidgets('validates enum currency using custom validator',
-            (tester) async {
-          final formKey = GlobalKey<FormState>();
-          final controller = CurrencyInputController<CurrencyCode>(
-            initialCurrency: CurrencyCode.gbp,
-            initialAmount: '25',
-          );
+        (tester) async {
+      final formKey = GlobalKey<FormState>();
+      final controller = CurrencyInputController<CurrencyCode>(
+        initialCurrency: CurrencyCode.gbp,
+        initialAmount: '25',
+      );
 
-          await tester.pumpWidget(
-            wrapWithMaterial(
-              Form(
-                key: formKey,
-                child: buildEnumField(
-                  controller: controller,
-                  currencyValidator: (currency) {
-                    if (currency == CurrencyCode.gbp) {
-                      return 'GBP is not supported';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+      await tester.pumpWidget(
+        wrapWithMaterial(
+          Form(
+            key: formKey,
+            child: buildEnumField(
+              controller: controller,
+              currencyValidator: (currency) {
+                if (currency == CurrencyCode.gbp) {
+                  return 'GBP is not supported';
+                }
+                return null;
+              },
             ),
-          );
+          ),
+        ),
+      );
 
-          final valid = formKey.currentState?.validate() ?? false;
-          await tester.pump();
+      final valid = formKey.currentState?.validate() ?? false;
+      await tester.pump();
 
-          expect(valid, isFalse);
-          expect(find.text('GBP is not supported'), findsOneWidget);
-        });
+      expect(valid, isFalse);
+      expect(find.text('GBP is not supported'), findsOneWidget);
+    });
   });
 }
 
