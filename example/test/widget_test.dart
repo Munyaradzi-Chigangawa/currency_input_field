@@ -5,17 +5,17 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('CurrencyInputField example app', () {
     Future<void> pumpHarness(
-        WidgetTester tester, {
-          CurrencyInputController<String>? controller,
-          String? Function(String)? amountValidator,
-          String? Function(CurrencyInputValue<String>)? validator,
-          bool enabled = true,
-          bool readOnlyAmount = false,
-          bool requireCurrency = true,
-          bool requireAmount = true,
-          CurrencyInputLayoutMode layoutMode = CurrencyInputLayoutMode.inline,
-          VoidCallback? onSubmitTap,
-        }) async {
+      WidgetTester tester, {
+      CurrencyInputController<String>? controller,
+      String? Function(String)? amountValidator,
+      String? Function(CurrencyInputValue<String>)? validator,
+      bool enabled = true,
+      bool readOnlyAmount = false,
+      bool requireCurrency = true,
+      bool requireAmount = true,
+      CurrencyInputLayoutMode layoutMode = CurrencyInputLayoutMode.inline,
+      VoidCallback? onSubmitTap,
+    }) async {
       final formKey = GlobalKey<FormState>();
 
       await tester.pumpWidget(
@@ -64,7 +64,7 @@ void main() {
                     const SizedBox(height: 16),
                     FilledButton(
                       onPressed: onSubmitTap ??
-                              () {
+                          () {
                             formKey.currentState!.validate();
                           },
                       child: const Text('Submit'),
@@ -86,15 +86,15 @@ void main() {
 
     Finder findCurrencyDropdown() {
       return find.byWidgetPredicate(
-            (widget) =>
-        widget is DropdownButtonFormField<String> &&
+        (widget) =>
+            widget is DropdownButtonFormField<String> &&
             widget.decoration.labelText == 'Currency',
       );
     }
 
     testWidgets('renders currency and amount inputs', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       await pumpHarness(tester);
 
       expect(findCurrencyDropdown(), findsOneWidget);
@@ -103,8 +103,8 @@ void main() {
     });
 
     testWidgets('shows invalid form when amount is empty', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       final formKey = GlobalKey<FormState>();
 
       await tester.pumpWidget(
@@ -139,9 +139,7 @@ void main() {
                       currencyDecoration: InputDecoration(
                         labelText: 'Currency',
                       ),
-                      amountDecoration: InputDecoration(
-                        labelText: 'Amount',
-                      ),
+                      amountDecoration: InputDecoration(labelText: 'Amount'),
                     ),
                   ),
                   FilledButton(
@@ -240,18 +238,14 @@ void main() {
     });
 
     testWidgets('readOnly amount field does not become editable', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       final controller = CurrencyInputController<String>(
         initialCurrency: 'USD',
         initialAmount: '49.99',
       );
 
-      await pumpHarness(
-        tester,
-        controller: controller,
-        readOnlyAmount: true,
-      );
+      await pumpHarness(tester, controller: controller, readOnlyAmount: true);
 
       final textField = tester.widget<TextField>(findAmountField());
       expect(textField.readOnly, isTrue);
@@ -259,8 +253,8 @@ void main() {
     });
 
     testWidgets('disabled field is rendered disabled', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       final controller = CurrencyInputController<String>(
         initialCurrency: 'USD',
         initialAmount: '0.00',
@@ -280,41 +274,38 @@ void main() {
     });
 
     testWidgets('stacked layout still renders both controls', (
-        WidgetTester tester,
-        ) async {
-      await pumpHarness(
-        tester,
-        layoutMode: CurrencyInputLayoutMode.stacked,
-      );
+      WidgetTester tester,
+    ) async {
+      await pumpHarness(tester, layoutMode: CurrencyInputLayoutMode.stacked);
 
       expect(findCurrencyDropdown(), findsOneWidget);
       expect(findAmountField(), findsOneWidget);
-      expect(find.byKey(const Key('currency_input_stacked_layout')), findsOneWidget);
+      expect(
+        find.byKey(const Key('currency_input_stacked_layout')),
+        findsOneWidget,
+      );
     });
 
     testWidgets('inline layout renders inline wrapper', (
-        WidgetTester tester,
-        ) async {
-      await pumpHarness(
-        tester,
-        layoutMode: CurrencyInputLayoutMode.inline,
-      );
+      WidgetTester tester,
+    ) async {
+      await pumpHarness(tester, layoutMode: CurrencyInputLayoutMode.inline);
 
-      expect(find.byKey(const Key('currency_input_inline_layout')), findsOneWidget);
+      expect(
+        find.byKey(const Key('currency_input_inline_layout')),
+        findsOneWidget,
+      );
     });
 
     testWidgets('controller clear resets amount text', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       final controller = CurrencyInputController<String>(
         initialCurrency: 'USD',
         initialAmount: '12.34',
       );
 
-      await pumpHarness(
-        tester,
-        controller: controller,
-      );
+      await pumpHarness(tester, controller: controller);
 
       expect(find.text('12.34'), findsOneWidget);
 

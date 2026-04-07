@@ -43,7 +43,7 @@ class CurrencyInputField<T> extends StatefulWidget {
     this.currencyFlex = 4,
     this.amountFlex = 6,
     this.amountKeyboardType =
-    const TextInputType.numberWithOptions(decimal: true),
+        const TextInputType.numberWithOptions(decimal: true),
     this.amountTextInputAction,
     this.amountFocusNode,
     this.amountInputFormatters,
@@ -56,20 +56,20 @@ class CurrencyInputField<T> extends StatefulWidget {
         assert(currencyFlex > 0, 'currencyFlex must be > 0'),
         assert(amountFlex > 0, 'amountFlex must be > 0'),
         assert(
-        fieldHorizontalPadding >= 0,
-        'fieldHorizontalPadding must be >= 0',
+          fieldHorizontalPadding >= 0,
+          'fieldHorizontalPadding must be >= 0',
         ),
         assert(
-        fieldVerticalPadding >= 0,
-        'fieldVerticalPadding must be >= 0',
+          fieldVerticalPadding >= 0,
+          'fieldVerticalPadding must be >= 0',
         ),
         assert(
-        inlineDividerHeight >= 0,
-        'inlineDividerHeight must be >= 0',
+          inlineDividerHeight >= 0,
+          'inlineDividerHeight must be >= 0',
         ),
         assert(
-        stackedDividerSpacing >= 0,
-        'stackedDividerSpacing must be >= 0',
+          stackedDividerSpacing >= 0,
+          'stackedDividerSpacing must be >= 0',
         );
 
   final List<T> currencies;
@@ -305,7 +305,7 @@ class _CurrencyInputFieldState<T> extends State<CurrencyInputField<T>> {
   Widget _buildCurrencyField(FormFieldState<CurrencyInputValue<T>> field) {
     return DropdownButtonFormField<T>(
       initialValue: _controller.currency != null &&
-          widget.currencies.contains(_controller.currency)
+              widget.currencies.contains(_controller.currency)
           ? _controller.currency
           : null,
       isExpanded: true,
@@ -316,21 +316,21 @@ class _CurrencyInputFieldState<T> extends State<CurrencyInputField<T>> {
       items: widget.currencies
           .map(
             (currency) => DropdownMenuItem<T>(
-          value: currency,
-          child: Text(
-            widget.currencyLabelBuilder(currency),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      )
+              value: currency,
+              child: Text(
+                widget.currencyLabelBuilder(currency),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          )
           .toList(),
       onChanged: widget.enabled
           ? (value) {
-        _controller.setCurrency(value);
-        field.didChange(_controller.value);
-        _notifyChanged();
-        setState(() {});
-      }
+              _controller.setCurrency(value);
+              field.didChange(_controller.value);
+              _notifyChanged();
+              setState(() {});
+            }
           : null,
     );
   }
@@ -396,8 +396,8 @@ class _CurrencyInputFieldState<T> extends State<CurrencyInputField<T>> {
         final borderColor = hasError
             ? (_style.errorBorderColor ?? theme.colorScheme.error)
             : (_amountFocusNode.hasFocus
-            ? (_style.focusedBorderColor ?? theme.colorScheme.primary)
-            : (_style.borderColor ?? theme.dividerColor));
+                ? (_style.focusedBorderColor ?? theme.colorScheme.primary)
+                : (_style.borderColor ?? theme.dividerColor));
 
         final dividerColor = _style.dividerColor ?? theme.dividerColor;
 
@@ -414,37 +414,37 @@ class _CurrencyInputFieldState<T> extends State<CurrencyInputField<T>> {
               ),
               child: shouldStack
                   ? Column(
-                key: const Key('currency_input_stacked_layout'),
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildCurrencyField(field),
-                  Divider(
-                    height: widget.stackedDividerSpacing,
-                    thickness: 1,
-                    color: dividerColor,
-                  ),
-                  _buildAmountField(field),
-                ],
-              )
+                      key: const Key('currency_input_stacked_layout'),
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildCurrencyField(field),
+                        Divider(
+                          height: widget.stackedDividerSpacing,
+                          thickness: 1,
+                          color: dividerColor,
+                        ),
+                        _buildAmountField(field),
+                      ],
+                    )
                   : Row(
-                key: const Key('currency_input_inline_layout'),
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    flex: widget.currencyFlex,
-                    child: _buildCurrencyField(field),
-                  ),
-                  Container(
-                    width: 1,
-                    height: widget.inlineDividerHeight,
-                    color: dividerColor,
-                  ),
-                  Expanded(
-                    flex: widget.amountFlex,
-                    child: _buildAmountField(field),
-                  ),
-                ],
-              ),
+                      key: const Key('currency_input_inline_layout'),
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          flex: widget.currencyFlex,
+                          child: _buildCurrencyField(field),
+                        ),
+                        Container(
+                          width: 1,
+                          height: widget.inlineDividerHeight,
+                          color: dividerColor,
+                        ),
+                        Expanded(
+                          flex: widget.amountFlex,
+                          child: _buildAmountField(field),
+                        ),
+                      ],
+                    ),
             ),
             if (field.errorText != null) ...[
               const SizedBox(height: 6),
