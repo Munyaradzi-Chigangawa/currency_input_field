@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, without v prefix (example: 0.1.0)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate version format
+        run: |
+          VERSION="${{ inputs.version }}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$ ]]; then
+            echo "Invalid semver version: $VERSION"
+            exit 1
+          fi
+
+      - name: Verify pubspec version matches input
+        run: |
+          VERSION="${{ inputs.version }}"
+          PUBSPEC_VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+          if [ "$PUBSPEC_VERSION" != "$VERSION" ]; then
+            echo "pubspec.yaml version ($PUBSPEC_VERSION) does not match workflow input ($VERSION)"
+            exit 1
+          fi
+
+      - name: Verify changelog contains version
+        run: |
+          VERSION="${{ inputs.version }}"
+          if ! grep -q "^## $VERSION" CHANGELOG.md; then
+            echo "CHANGELOG.md does not contain header: ## $VERSION"
+            exit 1
+          fi
+
+      - name: Check tag does not already exist
+        run: |
+          VERSION="v${{ inputs.version }}"
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "Tag already exists: $VERSION"
+            exit 1
+          fi
+
+      - name: Create git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ inputs.version }}"
+          git push origin "v${{ inputs.version }}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ inputs.version }}" \
+            --title "v${{ inputs.version }}" \
+            --generate-notes
