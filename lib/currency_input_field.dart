@@ -1,3 +1,8 @@
+/// Public exports for the `currency_input_field` package.
+///
+/// Import this library to access the main widget, controller, value model,
+/// formatter, and styling classes used by the package.
+
 library currency_input_field;
 
 export 'src/controllers/currency_input_controller.dart';
