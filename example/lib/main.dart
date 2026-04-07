@@ -43,6 +43,10 @@ class CurrencyInputDemoPage extends StatelessWidget {
           InvoiceCollectionExample(),
           SizedBox(height: 16),
           FixedInvoiceSettlementExample(),
+          SizedBox(height: 16),
+          QuickTransferInlineExample(),
+          SizedBox(height: 16),
+          WalletTopUpExample(),
           SizedBox(height: 24),
         ],
       ),
@@ -258,7 +262,7 @@ class _AdminPayoutExampleState extends State<AdminPayoutExample> {
           children: [
             CurrencyInputField<String>(
               controller: _controller,
-              currencies: const ['USD', 'EUR', 'GBP', 'ZAR'],
+              currencies: const ['USD','GBP','ZWG','ZAR'],
               currencyLabelBuilder: (currency) => currency,
               currencyHintText: 'Settlement currency',
               monetaryHintText: 'Payout amount',
@@ -615,6 +619,232 @@ class _FixedInvoiceSettlementExampleState
             FilledButton(
               onPressed: _submit,
               child: const Text('Confirm settlement'),
+            ),
+            SubmissionResult(
+              message: _result,
+              isSuccess: _isSuccess,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class QuickTransferInlineExample extends StatefulWidget {
+  const QuickTransferInlineExample({super.key});
+
+  @override
+  State<QuickTransferInlineExample> createState() =>
+      _QuickTransferInlineExampleState();
+}
+
+class _QuickTransferInlineExampleState
+    extends State<QuickTransferInlineExample> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = CurrencyInputController<String>(
+    initialCurrency: 'USD',
+  );
+
+  String? _result;
+  bool _isSuccess = false;
+
+  void _submit() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    setState(() {
+      if (!isValid) {
+        _isSuccess = false;
+        _result = 'Transfer could not be submitted. Please fix the errors.';
+        return;
+      }
+
+      _isSuccess = true;
+      _result =
+      'Quick transfer created: ${_controller.currency} ${_controller.amountText}';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ExampleSection(
+      title: '5. Quick transfer inline with icons',
+      description:
+      'A compact transfer form for dashboards and wallet apps where speed matters and the form needs to fit neatly into a tighter horizontal layout.',
+      whyItFits:
+      'This configuration uses inline layout, compact spacing, and icon-based input decoration to create a fast-entry form for desktop and admin-style screens.',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CurrencyInputField<String>(
+              controller: _controller,
+              currencies: const ['USD', 'GBP', 'EUR'],
+              currencyLabelBuilder: (currency) => currency,
+              currencyHintText: 'Currency',
+              monetaryHintText: 'Transfer amount',
+              layoutMode: CurrencyInputLayoutMode.inline,
+              requireCurrency: true,
+              requireAmount: true,
+              useLabelText: true,
+              containerPadding:
+              const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
+              fieldHorizontalPadding: 10,
+              fieldVerticalPadding: 8,
+              inlineDividerHeight: 34,
+              stackedDividerSpacing: 1,
+              currencyFlex: 4,
+              amountFlex: 6,
+              style: const CurrencyInputFieldStyle(
+                currencyDecoration: InputDecoration(
+                  labelText: 'Currency',
+                  hintText: 'Choose currency',
+                  prefixIcon: Icon(Icons.currency_exchange),
+                ),
+                amountDecoration: InputDecoration(
+                  labelText: 'Transfer amount',
+                  hintText: 'Enter amount',
+                  prefixIcon: Icon(Icons.send_outlined),
+                  suffixIcon: Icon(Icons.arrow_forward),
+                ),
+              ),
+              amountValidator: (value) {
+                final amount = double.tryParse(value);
+                if (amount == null) {
+                  return 'Enter a valid transfer amount';
+                }
+                if (amount <= 0) {
+                  return 'Amount must be greater than zero';
+                }
+                if (amount > 5000) {
+                  return 'Quick transfers are capped at 5000';
+                }
+                return null;
+              },
+              currencyValidator: (currency) {
+                if (currency == 'EUR') {
+                  return 'EUR quick transfers are not available';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed: _submit,
+              icon: const Icon(Icons.bolt),
+              label: const Text('Send transfer'),
+            ),
+            SubmissionResult(
+              message: _result,
+              isSuccess: _isSuccess,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WalletTopUpExample extends StatefulWidget {
+  const WalletTopUpExample({super.key});
+
+  @override
+  State<WalletTopUpExample> createState() => _WalletTopUpExampleState();
+}
+
+class _WalletTopUpExampleState extends State<WalletTopUpExample> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = CurrencyInputController<String>(
+    initialCurrency: 'USD',
+  );
+
+  String? _result;
+  bool _isSuccess = false;
+
+  void _submit() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+
+    setState(() {
+      if (!isValid) {
+        _isSuccess = false;
+        _result = 'Top-up could not be submitted. Please fix the errors.';
+        return;
+      }
+
+      _isSuccess = true;
+      _result =
+      'Wallet top-up created: ${_controller.currency} ${_controller.amountText}';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ExampleSection(
+      title: '6. Wallet top-up with icons',
+      description:
+      'A consumer wallet top-up flow that uses icons to make the form feel more guided and mobile-friendly.',
+      whyItFits:
+      'This configuration uses stacked layout, decorated inputs, and icon-led affordances to show how teams can build a more visual payment experience using the current API.',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CurrencyInputField<String>(
+              controller: _controller,
+              currencies: const ['USD', 'GBP', 'ZWG'],
+              currencyLabelBuilder: (currency) => currency,
+              currencyHintText: 'Top-up currency',
+              monetaryHintText: 'Top-up amount',
+              layoutMode: CurrencyInputLayoutMode.stacked,
+              requireCurrency: true,
+              requireAmount: true,
+              useLabelText: true,
+              containerPadding:
+              const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              fieldHorizontalPadding: 14,
+              fieldVerticalPadding: 12,
+              inlineDividerHeight: 40,
+              stackedDividerSpacing: 4,
+              style: const CurrencyInputFieldStyle(
+                currencyDecoration: InputDecoration(
+                  labelText: 'Top-up currency',
+                  hintText: 'Choose currency',
+                  prefixIcon: Icon(Icons.account_balance_wallet_outlined),
+                ),
+                amountDecoration: InputDecoration(
+                  labelText: 'Top-up amount',
+                  hintText: 'Enter amount',
+                  prefixIcon: Icon(Icons.payments_outlined),
+                  suffixIcon: Icon(Icons.edit_outlined),
+                ),
+              ),
+              amountValidator: (value) {
+                final amount = double.tryParse(value);
+                if (amount == null) {
+                  return 'Enter a valid top-up amount';
+                }
+                if (amount < 5) {
+                  return 'Minimum top-up is 5';
+                }
+                if (amount > 2000) {
+                  return 'Maximum top-up is 2000';
+                }
+                return null;
+              },
+              currencyValidator: (currency) {
+                if (currency == 'ZWG') {
+                  return 'ZWG top-ups are currently unavailable';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed: _submit,
+              icon: const Icon(Icons.arrow_upward),
+              label: const Text('Top up wallet'),
             ),
             SubmissionResult(
               message: _result,
