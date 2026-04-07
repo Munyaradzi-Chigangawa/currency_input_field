@@ -11,9 +11,9 @@ class DecimalTextInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     final text = newValue.text;
 
     if (text.isEmpty) {
@@ -27,11 +27,13 @@ class DecimalTextInputFormatter extends TextInputFormatter {
     final isStandaloneMinus = allowNegative && text == '-';
     final isTrailingDot =
         decimalRange > 0 && RegExp('^$negativePart\\d+\\.\$').hasMatch(text);
-    final isLeadingDot =
-        decimalRange > 0 &&
-            RegExp('^$negativePart\\.\\d{0,$decimalRange}\$').hasMatch(text);
+    final isLeadingDot = decimalRange > 0 &&
+        RegExp('^$negativePart\\.\\d{0,$decimalRange}\$').hasMatch(text);
 
-    if (regExp.hasMatch(text) || isStandaloneMinus || isTrailingDot || isLeadingDot) {
+    if (regExp.hasMatch(text) ||
+        isStandaloneMinus ||
+        isTrailingDot ||
+        isLeadingDot) {
       return newValue;
     }
 
