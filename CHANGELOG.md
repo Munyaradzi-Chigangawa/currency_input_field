@@ -1,3 +1,9 @@
+## 0.1.1
+
+- Added public API documentation comments to improve package documentation coverage on pub.dev.
+- Improved developer-facing API documentation for the main widget, controller, formatter, value model, and style classes.
+- Updated analysis configuration to enforce public API documentation for future changes.
+
 ## 0.1.0
 
 - Introduced breaking API changes to improve flexibility and long-term maintainability.
