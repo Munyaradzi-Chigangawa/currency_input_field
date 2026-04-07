@@ -12,10 +12,12 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -28,6 +30,10 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Get example dependencies
+        run: flutter pub get
+        working-directory: example
+
       - name: Verify tag matches pubspec version
         run: |
           TAG_VERSION="${GITHUB_REF_NAME#v}"
@@ -39,6 +45,10 @@ jobs:
 
       - name: Analyze
         run: flutter analyze
+
+      - name: Analyze example
+        run: flutter analyze
+        working-directory: example
 
       - name: Test
         run: flutter test

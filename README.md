@@ -34,7 +34,7 @@ The example app currently includes the following production-style scenarios:
 
 <p align="center">
   <img
-    src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/CurrencyInputField.gif"
+    src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/CurrencyInputField.gif"
     alt="Currency Input Field full component showcase"
     width="900"
   />
@@ -46,7 +46,7 @@ The example app currently includes the following production-style scenarios:
       <h3>Finance admin payout form</h3>
       <p>Compact inline layout, enterprise-style spacing, payout validation, and unsupported currency rules.</p>
       <img
-        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/AdminPayoutExample.png"
+        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/AdminPayoutExample.png"
         alt="Finance admin payout form"
         width="100%"
       />
@@ -55,7 +55,7 @@ The example app currently includes the following production-style scenarios:
       <h3>Mobile donation flow</h3>
       <p>Stacked mobile-friendly layout, spacious padding, and donation-focused amount validation.</p>
       <img
-        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/DonationExample.png"
+        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/DonationExample.png"
         alt="Mobile donation flow"
         width="100%"
       />
@@ -66,7 +66,7 @@ The example app currently includes the following production-style scenarios:
       <h3>Cross-border invoice payment</h3>
       <p>Enum-based currency support, adaptive layout, and currency-specific business rules.</p>
       <img
-        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/InvoiceCollectionExample.png"
+        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/InvoiceCollectionExample.png"
         alt="Cross-border invoice payment"
         width="100%"
       />
@@ -75,7 +75,7 @@ The example app currently includes the following production-style scenarios:
       <h3>Fixed invoice settlement</h3>
       <p>Prefilled controller state, read-only amount handling, and review-and-confirm payment flow.</p>
       <img
-        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/FixedInvoiceSettlementExample.png"
+        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/FixedInvoiceSettlementExample.png"
         alt="Fixed invoice settlement"
         width="100%"
       />
@@ -86,7 +86,7 @@ The example app currently includes the following production-style scenarios:
       <h3>Quick transfer inline with icons</h3>
       <p>Inline layout with decorated fields, compact fast-entry UX, and icon-based input styling.</p>
       <img
-        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/QuickTransferInlineExample.png"
+        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/QuickTransferInlineExample.png"
         alt="Quick transfer inline with icons"
         width="100%"
       />
@@ -95,7 +95,7 @@ The example app currently includes the following production-style scenarios:
       <h3>Wallet top-up with icons</h3>
       <p>Stacked consumer-style layout with icons, guided input decoration, and wallet top-up validation.</p>
       <img
-        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/main/screenshots/WalletTopUpExample.png"
+        src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/WalletTopUpExample.png"
         alt="Wallet top-up with icons"
         width="100%"
       />
