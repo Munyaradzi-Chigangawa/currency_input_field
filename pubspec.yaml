@@ -1,6 +1,6 @@
 name: currency_input_field
 description: A reusable Flutter widget for selecting a currency and entering a monetary amount, with validation, flexible layouts, and configurable sizing.
-version: 0.1.0
+version: 0.1.1
 homepage: https://munyaradzichigangawa.co.zw
 repository: https://github.com/Munyaradzi-Chigangawa/currency_input_field
 issue_tracker: https://github.com/Munyaradzi-Chigangawa/currency_input_field/issues

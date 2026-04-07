@@ -36,7 +36,7 @@ The example app currently includes the following production-style scenarios:
   <img
     src="https://raw.githubusercontent.com/Munyaradzi-Chigangawa/currency_input_field/master/screenshots/CurrencyInputField.gif"
     alt="Currency Input Field full component showcase"
-    width="900"
+    height="500"
   />
 </p>
 
@@ -124,7 +124,7 @@ Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  currency_input_field: ^0.1.0
+  currency_input_field: ^0.1.1
 ```
 
 Then run:

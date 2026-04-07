@@ -2,13 +2,30 @@ import 'package:currency_input_field/currency_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Controls how the currency and amount inputs are arranged.
 enum CurrencyInputLayoutMode {
+  /// Automatically switches between inline and stacked layout
+  /// depending on the available width.
   adaptive,
+
+  /// Always displays the currency and amount fields side by side.
   inline,
+
+  /// Always displays the currency field above the amount field.
   stacked,
 }
 
+/// A configurable input widget for selecting a currency and entering
+/// a monetary amount.
+///
+/// This widget supports:
+/// - generic currency types
+/// - inline, stacked, and adaptive layouts
+/// - controller-driven state
+/// - amount, currency, and cross-field validation
+/// - configurable sizing and layout behavior
 class CurrencyInputField<T> extends StatefulWidget {
+  /// Creates a currency input field.
   const CurrencyInputField({
     super.key,
     required this.currencies,
@@ -72,55 +89,120 @@ class CurrencyInputField<T> extends StatefulWidget {
           'stackedDividerSpacing must be >= 0',
         );
 
+  /// The list of selectable currency values.
   final List<T> currencies;
+
+  /// Builds the visible label for each currency option.
   final String Function(T currency) currencyLabelBuilder;
 
+  /// Optional controller used to read and update the widget state externally.
   final CurrencyInputController<T>? controller;
+
+  /// The initially selected currency when no controller is provided.
   final T? initialCurrency;
+
+  /// The initial amount text when no controller is provided.
   final String initialAmount;
 
+  /// Called whenever the combined value changes.
   final ValueChanged<CurrencyInputValue<T>>? onChanged;
+
+  /// Called whenever the selected currency changes.
   final ValueChanged<T?>? onCurrencyChanged;
+
+  /// Called whenever the parsed amount changes.
   final ValueChanged<double>? onAmountChanged;
 
+  /// Validates the combined currency and amount value.
+  ///
+  /// This is useful for cross-field business rules.
   final String? Function(CurrencyInputValue<T> value)? validator;
+
+  /// Validates the selected currency.
   final String? Function(T? currency)? currencyValidator;
+
+  /// Validates the raw amount text.
   final String? Function(String amountText)? amountValidator;
 
+  /// Whether a currency must be selected.
   final bool requireCurrency;
+
+  /// Whether an amount must be entered.
   final bool requireAmount;
 
+  /// Hint or label text for the currency input.
   final String currencyHintText;
+
+  /// Hint or label text for the amount input.
   final String monetaryHintText;
 
+  /// Whether the widget is enabled.
   final bool enabled;
+
+  /// Whether the amount field is read-only.
   final bool readOnlyAmount;
+
+  /// Whether the amount field should receive focus automatically.
   final bool autofocusAmount;
 
+  /// The maximum number of decimal digits allowed in the amount field.
   final int decimalDigits;
+
+  /// Whether negative values are allowed in the amount field.
   final bool allowNegative;
 
+  /// Controls when validation messages are shown.
   final AutovalidateMode autovalidateMode;
+
+  /// Controls whether the fields are shown inline, stacked, or adaptively.
   final CurrencyInputLayoutMode layoutMode;
+
+  /// Width threshold used by adaptive layout to switch to stacked mode.
   final double stackBreakpoint;
+
+  /// Flex value for the currency field in inline layout.
   final int currencyFlex;
+
+  /// Flex value for the amount field in inline layout.
   final int amountFlex;
 
+  /// Keyboard type used by the amount field.
   final TextInputType amountKeyboardType;
+
+  /// Keyboard action used by the amount field.
   final TextInputAction? amountTextInputAction;
+
+  /// Optional focus node for the amount field.
   final FocusNode? amountFocusNode;
+
+  /// Additional input formatters for the amount field.
   final List<TextInputFormatter>? amountInputFormatters;
 
+  /// Border radius used by the currency dropdown menu.
   final BorderRadius? dropdownBorderRadius;
+
+  /// Maximum height of the currency dropdown menu.
   final double? dropdownMenuMaxHeight;
 
+  /// Optional style configuration for the widget.
   final CurrencyInputFieldStyle? style;
 
+  /// Padding inside the outer container that wraps both fields.
   final EdgeInsetsGeometry containerPadding;
+
+  /// Horizontal padding inside the currency and amount fields.
   final double fieldHorizontalPadding;
+
+  /// Vertical padding inside the currency and amount fields.
   final double fieldVerticalPadding;
+
+  /// Height of the divider used in inline layout.
   final double inlineDividerHeight;
+
+  /// Divider spacing used in stacked layout.
   final double stackedDividerSpacing;
+
+  /// Whether hint texts should also be used as floating labels.
   final bool useLabelText;
 
   @override
