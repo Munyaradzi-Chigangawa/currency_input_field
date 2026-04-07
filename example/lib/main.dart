@@ -28,9 +28,7 @@ class CurrencyInputDemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Currency Input Field'),
-      ),
+      appBar: AppBar(title: const Text('Currency Input Field')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: const [
@@ -77,9 +75,9 @@ class _IntroSection extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'These examples are based on the actual component API: '
-                    'generic currency types, controller support, amount and currency '
-                    'validation hooks, adaptive/inline/stacked layouts, read-only mode, '
-                    'and explicit sizing controls for compact or spacious UI.',
+                'generic currency types, controller support, amount and currency '
+                'validation hooks, adaptive/inline/stacked layouts, read-only mode, '
+                'and explicit sizing controls for compact or spacious UI.',
               ),
               const SizedBox(height: 12),
               const _FeatureBullet(
@@ -152,10 +150,7 @@ class ExampleSection extends StatelessWidget {
           children: [
             Text(title, style: theme.textTheme.titleLarge),
             const SizedBox(height: 8),
-            Text(
-              description,
-              style: theme.textTheme.bodyMedium,
-            ),
+            Text(description, style: theme.textTheme.bodyMedium),
             const SizedBox(height: 8),
             Text(
               whyItFits,
@@ -189,12 +184,10 @@ class SubmissionResult extends StatelessWidget {
     }
 
     final scheme = Theme.of(context).colorScheme;
-    final background = isSuccess
-        ? scheme.primaryContainer
-        : scheme.errorContainer;
-    final foreground = isSuccess
-        ? scheme.onPrimaryContainer
-        : scheme.onErrorContainer;
+    final background =
+        isSuccess ? scheme.primaryContainer : scheme.errorContainer;
+    final foreground =
+        isSuccess ? scheme.onPrimaryContainer : scheme.onErrorContainer;
 
     return Container(
       width: double.infinity,
@@ -204,10 +197,7 @@ class SubmissionResult extends StatelessWidget {
         color: background,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(
-        message!,
-        style: TextStyle(color: foreground),
-      ),
+      child: Text(message!, style: TextStyle(color: foreground)),
     );
   }
 }
@@ -241,7 +231,7 @@ class _AdminPayoutExampleState extends State<AdminPayoutExample> {
 
       _isSuccess = true;
       _result =
-      'Payout queued: ${_controller.currency} ${_controller.amountText}';
+          'Payout queued: ${_controller.currency} ${_controller.amountText}';
     });
   }
 
@@ -250,10 +240,10 @@ class _AdminPayoutExampleState extends State<AdminPayoutExample> {
     return ExampleSection(
       title: '1. Finance admin payout form',
       description:
-      'A back-office finance user is creating a partner payout. The form '
+          'A back-office finance user is creating a partner payout. The form '
           'needs to stay compact, dense, and fast to scan on wider screens.',
       whyItFits:
-      'This uses an inline layout, tighter padding, and strict payout rules. '
+          'This uses an inline layout, tighter padding, and strict payout rules. '
           'It demonstrates a more enterprise/admin-style configuration.',
       child: Form(
         key: _formKey,
@@ -262,7 +252,7 @@ class _AdminPayoutExampleState extends State<AdminPayoutExample> {
           children: [
             CurrencyInputField<String>(
               controller: _controller,
-              currencies: const ['USD','GBP','ZWG','ZAR'],
+              currencies: const ['USD', 'GBP', 'ZWG', 'ZAR'],
               currencyLabelBuilder: (currency) => currency,
               currencyHintText: 'Settlement currency',
               monetaryHintText: 'Payout amount',
@@ -270,8 +260,10 @@ class _AdminPayoutExampleState extends State<AdminPayoutExample> {
               requireCurrency: true,
               requireAmount: true,
               useLabelText: true,
-              containerPadding:
-              const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
+              containerPadding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 0,
+              ),
               fieldHorizontalPadding: 10,
               fieldVerticalPadding: 8,
               inlineDividerHeight: 34,
@@ -304,10 +296,7 @@ class _AdminPayoutExampleState extends State<AdminPayoutExample> {
               icon: const Icon(Icons.send),
               label: const Text('Submit payout'),
             ),
-            SubmissionResult(
-              message: _result,
-              isSuccess: _isSuccess,
-            ),
+            SubmissionResult(message: _result, isSuccess: _isSuccess),
           ],
         ),
       ),
@@ -341,7 +330,7 @@ class _DonationExampleState extends State<DonationExample> {
 
       _isSuccess = true;
       _result =
-      'Donation ready: ${_controller.currency} ${_controller.amountText}';
+          'Donation ready: ${_controller.currency} ${_controller.amountText}';
     });
   }
 
@@ -350,10 +339,10 @@ class _DonationExampleState extends State<DonationExample> {
     return ExampleSection(
       title: '2. Mobile donation flow',
       description:
-      'A consumer donation screen needs large touch targets and very clear '
+          'A consumer donation screen needs large touch targets and very clear '
           'labels for first-time users on mobile devices.',
       whyItFits:
-      'This uses stacked mode, larger vertical padding, and friendly hints. '
+          'This uses stacked mode, larger vertical padding, and friendly hints. '
           'It feels more consumer/mobile-oriented than the admin example.',
       child: Form(
         key: _formKey,
@@ -370,8 +359,10 @@ class _DonationExampleState extends State<DonationExample> {
               requireCurrency: true,
               requireAmount: true,
               useLabelText: true,
-              containerPadding:
-              const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              containerPadding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 4,
+              ),
               fieldHorizontalPadding: 14,
               fieldVerticalPadding: 14,
               inlineDividerHeight: 40,
@@ -391,14 +382,8 @@ class _DonationExampleState extends State<DonationExample> {
               },
             ),
             const SizedBox(height: 12),
-            FilledButton(
-              onPressed: _submit,
-              child: const Text('Donate now'),
-            ),
-            SubmissionResult(
-              message: _result,
-              isSuccess: _isSuccess,
-            ),
+            FilledButton(onPressed: _submit, child: const Text('Donate now')),
+            SubmissionResult(message: _result, isSuccess: _isSuccess),
           ],
         ),
       ),
@@ -406,11 +391,7 @@ class _DonationExampleState extends State<DonationExample> {
   }
 }
 
-enum InvoiceCurrency {
-  usd,
-  gbp,
-  eur,
-}
+enum InvoiceCurrency { usd, gbp, eur }
 
 extension InvoiceCurrencyX on InvoiceCurrency {
   String get code {
@@ -454,7 +435,7 @@ class _InvoiceCollectionExampleState extends State<InvoiceCollectionExample> {
 
       _isSuccess = true;
       _result =
-      'Invoice payment captured: ${_controller.currency?.code} ${_controller.amountText}';
+          'Invoice payment captured: ${_controller.currency?.code} ${_controller.amountText}';
     });
   }
 
@@ -463,10 +444,10 @@ class _InvoiceCollectionExampleState extends State<InvoiceCollectionExample> {
     return ExampleSection(
       title: '3. Cross-border invoice payment',
       description:
-      'A SaaS billing team supports multiple settlement currencies and uses '
+          'A SaaS billing team supports multiple settlement currencies and uses '
           'enum-backed values to keep the payment flow type-safe.',
       whyItFits:
-      'This example shows the generic API in action with enum currencies, '
+          'This example shows the generic API in action with enum currencies, '
           'adaptive layout, and currency-specific business rules.',
       child: Form(
         key: _formKey,
@@ -484,8 +465,10 @@ class _InvoiceCollectionExampleState extends State<InvoiceCollectionExample> {
               requireCurrency: true,
               requireAmount: true,
               useLabelText: false,
-              containerPadding:
-              const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              containerPadding: const EdgeInsets.symmetric(
+                horizontal: 6,
+                vertical: 2,
+              ),
               fieldHorizontalPadding: 12,
               fieldVerticalPadding: 10,
               inlineDividerHeight: 36,
@@ -529,10 +512,7 @@ class _InvoiceCollectionExampleState extends State<InvoiceCollectionExample> {
               onPressed: _submit,
               child: const Text('Pay invoice'),
             ),
-            SubmissionResult(
-              message: _result,
-              isSuccess: _isSuccess,
-            ),
+            SubmissionResult(message: _result, isSuccess: _isSuccess),
           ],
         ),
       ),
@@ -571,7 +551,7 @@ class _FixedInvoiceSettlementExampleState
 
       _isSuccess = true;
       _result =
-      'Invoice 10482 will be settled in ${_controller.currency} for ${_controller.amountText}.';
+          'Invoice 10482 will be settled in ${_controller.currency} for ${_controller.amountText}.';
     });
   }
 
@@ -580,10 +560,10 @@ class _FixedInvoiceSettlementExampleState
     return ExampleSection(
       title: '4. Fixed invoice settlement',
       description:
-      'An invoice amount is already known from the backend, so the user can '
+          'An invoice amount is already known from the backend, so the user can '
           'only choose settlement currency before confirming payment.',
       whyItFits:
-      'This shows controller-prefilled state plus a read-only amount field. '
+          'This shows controller-prefilled state plus a read-only amount field. '
           'It is useful for review-and-confirm flows.',
       child: Form(
         key: _formKey,
@@ -601,8 +581,10 @@ class _FixedInvoiceSettlementExampleState
               requireCurrency: true,
               requireAmount: false,
               useLabelText: true,
-              containerPadding:
-              const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
+              containerPadding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 0,
+              ),
               fieldHorizontalPadding: 10,
               fieldVerticalPadding: 8,
               inlineDividerHeight: 34,
@@ -620,10 +602,7 @@ class _FixedInvoiceSettlementExampleState
               onPressed: _submit,
               child: const Text('Confirm settlement'),
             ),
-            SubmissionResult(
-              message: _result,
-              isSuccess: _isSuccess,
-            ),
+            SubmissionResult(message: _result, isSuccess: _isSuccess),
           ],
         ),
       ),
@@ -642,9 +621,7 @@ class QuickTransferInlineExample extends StatefulWidget {
 class _QuickTransferInlineExampleState
     extends State<QuickTransferInlineExample> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = CurrencyInputController<String>(
-    initialCurrency: 'USD',
-  );
+  final _controller = CurrencyInputController<String>(initialCurrency: 'USD');
 
   String? _result;
   bool _isSuccess = false;
@@ -661,7 +638,7 @@ class _QuickTransferInlineExampleState
 
       _isSuccess = true;
       _result =
-      'Quick transfer created: ${_controller.currency} ${_controller.amountText}';
+          'Quick transfer created: ${_controller.currency} ${_controller.amountText}';
     });
   }
 
@@ -670,9 +647,9 @@ class _QuickTransferInlineExampleState
     return ExampleSection(
       title: '5. Quick transfer inline with icons',
       description:
-      'A compact transfer form for dashboards and wallet apps where speed matters and the form needs to fit neatly into a tighter horizontal layout.',
+          'A compact transfer form for dashboards and wallet apps where speed matters and the form needs to fit neatly into a tighter horizontal layout.',
       whyItFits:
-      'This configuration uses inline layout, compact spacing, and icon-based input decoration to create a fast-entry form for desktop and admin-style screens.',
+          'This configuration uses inline layout, compact spacing, and icon-based input decoration to create a fast-entry form for desktop and admin-style screens.',
       child: Form(
         key: _formKey,
         child: Column(
@@ -688,8 +665,10 @@ class _QuickTransferInlineExampleState
               requireCurrency: true,
               requireAmount: true,
               useLabelText: true,
-              containerPadding:
-              const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
+              containerPadding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 0,
+              ),
               fieldHorizontalPadding: 10,
               fieldVerticalPadding: 8,
               inlineDividerHeight: 34,
@@ -735,10 +714,7 @@ class _QuickTransferInlineExampleState
               icon: const Icon(Icons.bolt),
               label: const Text('Send transfer'),
             ),
-            SubmissionResult(
-              message: _result,
-              isSuccess: _isSuccess,
-            ),
+            SubmissionResult(message: _result, isSuccess: _isSuccess),
           ],
         ),
       ),
@@ -755,9 +731,7 @@ class WalletTopUpExample extends StatefulWidget {
 
 class _WalletTopUpExampleState extends State<WalletTopUpExample> {
   final _formKey = GlobalKey<FormState>();
-  final _controller = CurrencyInputController<String>(
-    initialCurrency: 'USD',
-  );
+  final _controller = CurrencyInputController<String>(initialCurrency: 'USD');
 
   String? _result;
   bool _isSuccess = false;
@@ -774,7 +748,7 @@ class _WalletTopUpExampleState extends State<WalletTopUpExample> {
 
       _isSuccess = true;
       _result =
-      'Wallet top-up created: ${_controller.currency} ${_controller.amountText}';
+          'Wallet top-up created: ${_controller.currency} ${_controller.amountText}';
     });
   }
 
@@ -783,9 +757,9 @@ class _WalletTopUpExampleState extends State<WalletTopUpExample> {
     return ExampleSection(
       title: '6. Wallet top-up with icons',
       description:
-      'A consumer wallet top-up flow that uses icons to make the form feel more guided and mobile-friendly.',
+          'A consumer wallet top-up flow that uses icons to make the form feel more guided and mobile-friendly.',
       whyItFits:
-      'This configuration uses stacked layout, decorated inputs, and icon-led affordances to show how teams can build a more visual payment experience using the current API.',
+          'This configuration uses stacked layout, decorated inputs, and icon-led affordances to show how teams can build a more visual payment experience using the current API.',
       child: Form(
         key: _formKey,
         child: Column(
@@ -801,8 +775,10 @@ class _WalletTopUpExampleState extends State<WalletTopUpExample> {
               requireCurrency: true,
               requireAmount: true,
               useLabelText: true,
-              containerPadding:
-              const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              containerPadding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 4,
+              ),
               fieldHorizontalPadding: 14,
               fieldVerticalPadding: 12,
               inlineDividerHeight: 40,
@@ -846,10 +822,7 @@ class _WalletTopUpExampleState extends State<WalletTopUpExample> {
               icon: const Icon(Icons.arrow_upward),
               label: const Text('Top up wallet'),
             ),
-            SubmissionResult(
-              message: _result,
-              isSuccess: _isSuccess,
-            ),
+            SubmissionResult(message: _result, isSuccess: _isSuccess),
           ],
         ),
       ),
