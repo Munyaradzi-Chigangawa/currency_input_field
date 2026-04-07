@@ -3,55 +3,10 @@ name: Publish to pub.dev
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
-
-permissions:
-  contents: read
-  id-token: write
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-
-      - name: Flutter version
-        run: flutter --version
-
-      - name: Get dependencies
-        run: flutter pub get
-
-      - name: Get example dependencies
-        run: flutter pub get
-        working-directory: example
-
-      - name: Verify tag matches pubspec version
-        run: |
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-          PUBSPEC_VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}')
-          if [ "$TAG_VERSION" != "$PUBSPEC_VERSION" ]; then
-            echo "Tag version ($TAG_VERSION) does not match pubspec version ($PUBSPEC_VERSION)"
-            exit 1
-          fi
-
-      - name: Analyze
-        run: flutter analyze
-
-      - name: Analyze example
-        run: flutter analyze
-        working-directory: example
-
-      - name: Test
-        run: flutter test
-
-      - name: Publish
-        run: dart pub publish -f
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
